@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	template="/templates/navbar.xhtml">
+	<ui:define name="head">
+		<title>Kullanıcı İşlemleri</title>
+	</ui:define>
+	<ui:define name="content">
+		<h:messages globalOnly="true" styleClass="alert alert-danger" />
+		<div class="card"
+			style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+			<div class="card-body" style="text-align: center; margin: auto;">
+				<h3>Güncelle</h3>
+				<h:form>
+					<div class="form-row">
+						<div class="form-group" style="margin: 10px">
+							<h:inputText value="#{userBean.user.nickname}"
+								class="form-control" p:placeholder="Takma Ad" />
+						</div>
+						<div class="form-group" style="margin: 10px">
+							<h:inputText value="#{userBean.user.email}" class="form-control"
+								p:placeholder="Email" />
+						</div>
+						<div class="form-group" style="margin: 10px">
+							<h:inputSecret value="#{userBean.user.password}"
+								class="form-control" p:placeholder="Şifre" />
+						</div>
+						<div style="margin: 10px">
+							<h:selectOneMenu value="#{userBean.user.role}"
+								converter="roleConverter">
+								<f:selectItems value="#{userBean.roles}" var="role"
+									itemValue="#{role}" itemLabel="#{role.roleName}" />
+							</h:selectOneMenu>
+						</div>
+
+						<div class="form-group" style="margin: 20px">
+							<h:commandButton action="#{userBean.update}"
+								class="btn btn-outline-dark" value="Güncelle" />
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

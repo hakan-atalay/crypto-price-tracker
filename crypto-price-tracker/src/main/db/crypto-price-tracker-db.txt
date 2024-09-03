@@ -1,0 +1,17 @@
+create table roles(
+	id serial primary key,
+	role_name varchar unique
+);
+
+create table app_users(
+	id serial primary key,
+	nickname varchar unique,
+	email varchar,
+	password varchar,
+	role_id int,
+	created timestamp,
+	updated timestamp,
+	foreign key (role_id) references roles(id)
+	on update cascade
+	on delete cascade
+);
